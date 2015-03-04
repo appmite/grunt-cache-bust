@@ -145,7 +145,7 @@ module.exports = function(grunt) {
                         newReference = utils.addFileHash(utils.removePreviousHash(reference), fileHash, path.extname(filename));
 
                         // Update the reference in the markup
-                        markup = markup.replace(new RegExp(utils.regexEscape(originalReference), ''), newReference);
+                        markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newReference);
 
                         // Create our new file
                         grunt.file.copy(filename, newFilename);
@@ -176,10 +176,10 @@ module.exports = function(grunt) {
 
                     newFilename = originalReference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
                     newReference = newFilename;
-                    markup = markup.replace(new RegExp(utils.regexEscape(originalReference), ''), newFilename);
+                    markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newFilename);
                 }
 
-                processedFileMap[originalReference] = newReference;
+                processedFileMap[reference] = newReference;
 
                 if (opts.deleteOriginals) {
                     filesToDelete.push(filename);
