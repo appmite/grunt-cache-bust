@@ -172,9 +172,9 @@ module.exports = function(grunt) {
                     }
 
                     // Cater for special `?#iefix` in font face declarations - this isn't pretty
-                    reference = reference.replace('?#', '#');
+                    reference = originalReference.replace('?#', '#');
 
-                    newFilename = reference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
+                    newFilename = originalReference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
                     newReference = newFilename;
                     markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newFilename);
                 }
