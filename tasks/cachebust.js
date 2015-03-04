@@ -145,7 +145,7 @@ module.exports = function(grunt) {
                         newReference = utils.addFileHash(utils.removePreviousHash(reference), fileHash, path.extname(filename));
 
                         // Update the reference in the markup
-                        markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newReference);
+                        markup = markup.replace(new RegExp(utils.regexEscape(originalReference), ''), newReference);
 
                         // Create our new file
                         grunt.file.copy(filename, newFilename);
@@ -172,11 +172,11 @@ module.exports = function(grunt) {
                     }
 
                     // Cater for special `?#iefix` in font face declarations - this isn't pretty
-                    reference = reference.replace('?#', '#');
+                    reference = originalReference.replace('?#', '#');
 
-                    newFilename = reference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
+                    newFilename = originalReference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
                     newReference = newFilename;
-                    markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newFilename);
+                    markup = markup.replace(new RegExp(utils.regexEscape(originalReference), ''), newFilename);
                 }
 
                 processedFileMap[originalReference] = newReference;
