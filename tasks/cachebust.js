@@ -156,6 +156,16 @@ module.exports = function(grunt) {
                     filename = utils.removeHashInUrl(filename);
                     reference = utils.removeHashInUrl(reference);
 
+                    // Replacing specific terms in the import path so renaming files
+                    if (opts.replaceTerms && opts.replaceTerms.length > 0) {
+                        opts.replaceTerms.forEach(function(obj) {
+                            grunt.util._.each(obj, function(replacement, term) {
+                                filename = filename.replace(term, replacement);
+                                reference = reference.replace(term, replacement);
+                            });
+                        });
+                    }
+
                     if (!grunt.file.exists(filename)) {
                         grunt.log.warn('Static asset "' + filename + '" skipped because it wasn\'t found, original reference=' + reference);
                         return false;
@@ -166,7 +176,7 @@ module.exports = function(grunt) {
 
                     newFilename = reference.split('?')[0] + '?' + utils.generateFileHash(grunt.file.read(filename));
                     newReference = newFilename;
-                    markup = markup.replace(new RegExp(utils.regexEscape(reference), 'g'), newFilename);
+                    markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newFilename);
                 }
 
                 processedFileMap[originalReference] = newReference;
