@@ -179,7 +179,7 @@ module.exports = function(grunt) {
                     markup = markup.replace(new RegExp(utils.regexEscape(originalReference), 'g'), newFilename);
                 }
 
-                processedFileMap[reference] = newReference;
+                processedFileMap[originalReference] = newReference;
 
                 if (opts.deleteOriginals) {
                     filesToDelete.push(filename);
