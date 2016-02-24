@@ -32,7 +32,9 @@ module.exports = function(opts) {
         checkIfElemSrcValidFile: function(element) {
             return this.checkIfValidFile(element.attribs.src) ||
                 this.checkIfValidFile(element.attribs['xlink:href'] ? element.attribs['xlink:href'].split('#')[0] : '') ||
-                this.checkIfValidFile(element.attribs.href);
+                this.checkIfValidFile(element.attribs.href) ||
+                this.checkIfValidFile(element.attribs['th:href']) ||
+                this.checkIfValidFile(element.attribs['th:src']);
         },
 
         regexEscape: function(str) {
