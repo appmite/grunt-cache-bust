@@ -63,7 +63,8 @@ module.exports = function(opts, filters) {
                         });
 
                     for (var i = 0; i < foundPaths.length; i++) {
-                        paths = paths.concat(foundPaths[i]);
+                        var trimmedPath = foundPaths[i].replace('@{', '').replace('}', '');
+                        paths = paths.concat(trimmedPath);
                     }
                 };
 

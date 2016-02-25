@@ -22,14 +22,14 @@ var options = {
 
 var defaultFilters = {
     'script': function() {
-        return this.attribs['src'];
+        return this.attribs['src'] || this.attribs['th:src'];
     },
     'link[rel="stylesheet"]': function() {
-        return this.attribs['href'];
+        return this.attribs['href'] || this.attribs['th:href'];
     },
     'img': [
         function() {
-            return this.attribs['src'];
+            return this.attribs['src'] || this.attribs['th:src'];
         },
         function() {
             var srcset = this.attribs['srcset'];
@@ -44,20 +44,20 @@ var defaultFilters = {
         }
     ],
     'link[rel="icon"], link[rel="shortcut icon"]': function() {
-        return this.attribs['href'];
+        return this.attribs['href'] || this.attribs['th:href'];
     },
     'script[type="text/template"]': function() {},
     'square70x70logo': function() {
-        return this.attribs['src'];
+        return this.attribs['src'] || this.attribs['th:src'];
     },
     'square150x150logo': function() {
-        return this.attribs['src'];
+        return this.attribs['src'] || this.attribs['th:src'];
     },
     'square310x310logo': function() {
-        return this.attribs['src'];
+        return this.attribs['src'] || this.attribs['th:src'];
     },
     'wide310x150logo': function() {
-        return this.attribs['src'];
+        return this.attribs['src'] || this.attribs['th:src'];
     }
 };
 
